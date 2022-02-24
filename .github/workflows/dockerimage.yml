@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         ubuntu_release: ["20.04", "20.10"]
-        rpy2_version: ["master", "v3.4.x"]
+        rpy2_version: ["master", "v3.4.5"]
     env: 
       RPY2_VERSION: master
       LATEST_UBUNTU: "20.04"
@@ -23,7 +23,7 @@ jobs:
     - name: Build base image
       run: |
         docker build base \
-          --tag rpy2/base-ubuntu:"${{ matrix.rpy2_version }}"-"${{ matrix.ubuntu_release }}" \
+          --tag babessell/base-ubuntu:"${{ matrix.rpy2_version }}"-"${{ matrix.ubuntu_release }}" \
           --build-arg RPY2_VERSION="${{ matrix.rpy2_version }}" \
           --build-arg UBUNTU_RELEASE="${{ matrix.ubuntu_release }}"
     - name: Push base image
@@ -32,49 +32,11 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
       run: |
         echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-        IMAGE_TAG=rpy2/base-ubuntu:"${{ matrix.rpy2_version }}"-"${{ matrix.ubuntu_release }}"
+        IMAGE_TAG=babessell/base-ubuntu:"${{ matrix.rpy2_version }}"-"${{ matrix.ubuntu_release }}"
         docker tag "${IMAGE_TAG}" "${IMAGE_TAG}"
         docker push "${IMAGE_TAG}"
         if [ "${{ matrix.ubuntu_release }}" == "${LATEST_UBUNTU}" ]; then
           docker tag "${IMAGE_TAG}" rpy2/base-ubuntu:latest
-          docker push rpy2/base-ubuntu:latest
+          docker push babessell/base-ubuntu:latest
         fi
-    - name: Build jupyter image
-      run: |
-        docker build jupyter \
-          --tag rpy2/jupyter-ubuntu:"${{ matrix.rpy2_version }}"-"${{ matrix.ubuntu_release }}" \
-          --build-arg RPY2_VERSION="${{ matrix.rpy2_version }}" \
-          --build-arg UBUNTU_RELEASE="${{ matrix.ubuntu_release }}"
-    - name: Push jupyter image
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
-      run: |
-        echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-        IMAGE_TAG=rpy2/jupyter-ubuntu:"${{ matrix.rpy2_version }}"-"${{ matrix.ubuntu_release }}"
-        docker tag "${IMAGE_TAG}" "${IMAGE_TAG}"
-        docker push "${IMAGE_TAG}"
-        if [ "${{ matrix.ubuntu_release }}" == "${LATEST_UBUNTU}" ]; then
-          docker tag "${IMAGE_TAG}" rpy2/jupyter-ubuntu:latest
-          docker push rpy2/jupyter-ubuntu:latest
-        fi
-    - name: Build jupyter_ds image
-      run: |
-        docker build jupyter_ds \
-          --tag rpy2/jupyter_ds-ubuntu:"${{ matrix.rpy2_version }}"-"${{ matrix.ubuntu_release }}" \
-          --build-arg RPY2_VERSION="${{ matrix.rpy2_version }}" \
-          --build-arg UBUNTU_RELEASE="${{ matrix.ubuntu_release }}"
-    - name: Push jupyter_ds image
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
-      run: |
-        echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-        IMAGE_TAG=rpy2/jupyter_ds-ubuntu:"${{ matrix.rpy2_version }}"-"${{ matrix.ubuntu_release }}"
-        docker tag "${IMAGE_TAG}" "${IMAGE_TAG}"
-        docker push "${IMAGE_TAG}"
-        if [ "${{ matrix.ubuntu_release }}" == "${LATEST_UBUNTU}" ]; then
-          docker tag "${IMAGE_TAG}" rpy2/jupyter_ds-ubuntu:latest
-          docker push rpy2/jupyter_ds-ubuntu:latest
-        fi
- 
+   
