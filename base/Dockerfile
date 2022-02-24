@@ -1,6 +1,7 @@
 ARG UBUNTU_RELEASE=20.04
 FROM ubuntu:$UBUNTU_RELEASE
 
+# force rebuild
 MAINTAINER Brandt Bessell <babessell@gmail.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
