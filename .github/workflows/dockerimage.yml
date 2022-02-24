@@ -32,6 +32,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./base/
-	  file: ./base/Dockerfile
           push: true
           tags: babessell/rpy2-41:latest
