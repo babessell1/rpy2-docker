@@ -18,6 +18,8 @@ add-apt-repository \
         --yes \
 		"deb {CRAN_MIRROR}/bin/linux/ubuntu/ $(lsb_release -cs)-cran40/"
         #"deb {CRAN_MIRROR}/bin/linux/ubuntu/ $(lsb_release -c -s)${CRAN_MIRROR_TAG}/"
+
+apt update
 		
 		
 apt-get update -qq
