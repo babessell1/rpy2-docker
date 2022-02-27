@@ -12,7 +12,7 @@ apt-key adv \
         --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 add-apt-repository \
         --yes \
-		"deb {CRAN_MIRROR}/bin/linux/ubuntu/ bionic-cran41/"
+		"deb {CRAN_MIRROR}/bin/linux/ubuntu/ $(lsb_release -cs)-cran40/"
         #"deb {CRAN_MIRROR}/bin/linux/ubuntu/ $(lsb_release -c -s)${CRAN_MIRROR_TAG}/"
 apt-get update -qq
 apt-get install -y \
