@@ -2,18 +2,24 @@ apt-get update -qq
 apt-get install -y \
         apt-utils \
         apt-transport-https \
-	dirmngr \
+		dirmngr \
         gnupg \
-	libcurl4-openssl-dev \
-	libnlopt-dev \
+		libcurl4-openssl-dev \
+		libnlopt-dev \
         lsb-release
-apt-key adv \
-        --keyserver keyserver.ubuntu.com \
-        --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+#apt-key adv \
+#        --keyserver keyserver.ubuntu.com \
+#        --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+		
+
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+
 add-apt-repository \
         --yes \
 		"deb {CRAN_MIRROR}/bin/linux/ubuntu/ $(lsb_release -cs)-cran40/"
         #"deb {CRAN_MIRROR}/bin/linux/ubuntu/ $(lsb_release -c -s)${CRAN_MIRROR_TAG}/"
+		
+		
 apt-get update -qq
 apt-get install -y \
         aptdaemon \
