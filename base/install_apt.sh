@@ -10,10 +10,24 @@ apt install -y \
 #        --keyserver keyserver.ubuntu.com \
 #        --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 		
-apt install --no-install-recommends software-properties-common dirmngr
-wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
-add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
-apt install --no-install-recommends r-base
+#apt install --no-install-recommends software-properties-common dirmngr
+#wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+#add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+#apt install --no-install-recommends r-base
+
+sudo sed -i "s/# deb-src/deb-src/g" /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get build-dep r-base-dev
+
+cd ~/Downloads
+wget -c https://cran.r-project.org/src/base/R-4/R-4.1.0.tar.gz
+tar -xf R-4.1.0.tar.gz
+cd R-4.1.0
+./configure
+make -j9
+make install
+
+
 
 #add-apt-repository \
 #        --yes \
