@@ -1,5 +1,5 @@
-apt-get update -qq
-apt-get install -y \
+apt update -qq
+apt install -y \
         apt-utils \
         apt-transport-https \
         gnupg \
@@ -20,7 +20,6 @@ add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_relea
 #		"deb {CRAN_MIRROR}/bin/linux/ubuntu/ $(lsb_release -c -s)-cran40/"
         #"deb {CRAN_MIRROR}/bin/linux/ubuntu/ $(lsb_release -c -s)${CRAN_MIRROR_TAG}/"
 
-apt update
 		
 		
 apt-get update -qq
