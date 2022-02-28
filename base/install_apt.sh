@@ -14,12 +14,14 @@ apt-key adv \
 
 add-apt-repository \
 	--yes \
-	"deb {CRAN_MIRROR}/bin/linux/ubuntu/ $(lsb_release -c -s)${CRAN_MIRROR_TAG}/"
+	'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'
+	#"deb {CRAN_MIRROR}/bin/linux/ubuntu/ $(lsb_release -c -s)${CRAN_MIRROR_TAG}/"
+	#deb https://cloud.r-project.org/bin/linux/ubuntu/ focal-cran40/
 	
 apt-get update
 apt-get install -y --no-install-recommends \
-		r-base=${R_BASE_VERSION}-* \
-		r-base-dev=${R_BASE_VERSION}-*
+		r-base \
+		r-base-dev
 
 #add-apt-repository \
 #        --yes \
