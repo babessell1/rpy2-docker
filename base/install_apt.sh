@@ -14,8 +14,8 @@ apt-key adv \
 
 add-apt-repository \
 	--yes \
-	"deb https://cloud.r-project.org/bin/linux/ubuntu/ $(lsb_release -cs)-cran40/"
-
+	"deb {CRAN_MIRROR}/bin/linux/ubuntu/ $(lsb_release -c -s)${CRAN_MIRROR_TAG}/"
+	
 apt-get update
 apt-get install -y --no-install-recommends \
 		r-base=${R_BASE_VERSION}-* \
