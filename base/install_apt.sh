@@ -7,9 +7,10 @@ apt-get install -y \
 		libcurl4-openssl-dev \
 		libnlopt-dev \
         lsb-release
-#apt-key adv \
-#        --keyserver keyserver.ubuntu.com \
-#        --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+
+apt-key adv \
+        --keyserver keyserver.ubuntu.com \
+        --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 
 echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/debian-unstable.list \
 	&& echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default
