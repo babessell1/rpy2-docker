@@ -6,12 +6,11 @@ MAINTAINER Brandt Bessell <babessell@gmail.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV CRAN_MIRROR=https://cloud.r-project.org \
-    CRAN_MIRROR_TAG=-cran41 \
+    CRAN_MIRROR_TAG=-cran40 \
 	R_BASE_VERSION=4.0.1
 
 ARG RPY2_VERSION=RELEASE_3_4_5
 ARG RPY2_CFFI_MODE=BOTH
-ARG R_BASE_VERSION=
 
 COPY install_apt.sh /opt/
 COPY install_rpacks.sh /opt/
