@@ -7,7 +7,7 @@ MAINTAINER Brandt Bessell <babessell@gmail.com>
 ARG DEBIAN_FRONTEND=noninteractive
 ENV CRAN_MIRROR=https://cloud.r-project.org \
     CRAN_MIRROR_TAG=-cran41 \
-	R_BASE_VERSION 4.0.1
+	R_BASE_VERSION=4.0.1
 
 ARG RPY2_VERSION=RELEASE_3_4_5
 ARG RPY2_CFFI_MODE=BOTH
