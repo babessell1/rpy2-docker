@@ -13,6 +13,7 @@ apt install -y \
 apt install --no-install-recommends software-properties-common dirmngr
 wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
 add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+apt install --no-install-recommends r-base
 
 #add-apt-repository \
 #        --yes \
@@ -20,9 +21,6 @@ add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_relea
 #		"deb {CRAN_MIRROR}/bin/linux/ubuntu/ $(lsb_release -c -s)-cran40/"
         #"deb {CRAN_MIRROR}/bin/linux/ubuntu/ $(lsb_release -c -s)${CRAN_MIRROR_TAG}/"
 
-		
-		
-apt-get update -qq
 apt-get install -y \
         aptdaemon \
         ed \
@@ -34,8 +32,6 @@ apt-get install -y \
 		python3 \
 		python3-pip \
 		python3-venv \
-		r-base \
-		r-base-dev\
 		sudo \
 		wget
 rm -rf /var/lib/apt/lists/*
