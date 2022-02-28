@@ -19,7 +19,7 @@ add-apt-repository \
 	"deb {CRAN_MIRROR}/bin/linux/ubuntu/ $(lsb_release -c -s)-cran41/"
 
 apt-get update
-apt-get install -t unstable -y --no-install-recommends \
+apt-get install -y --no-install-recommends \
 		r-base=${R_BASE_VERSION}-* \
 		r-base-dev=${R_BASE_VERSION}-*
 
