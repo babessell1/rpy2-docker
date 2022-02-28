@@ -1,7 +1,8 @@
-apt update -qq
-apt install -y \
+apt-get update -qq
+apt-get install -y \
         apt-utils \
         apt-transport-https \
+		dirmngr \
         gnupg \
 		libcurl4-openssl-dev \
 		libnlopt-dev \
@@ -9,25 +10,14 @@ apt install -y \
 #apt-key adv \
 #        --keyserver keyserver.ubuntu.com \
 #        --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-		
-#apt install --no-install-recommends software-properties-common dirmngr
-#wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
-#add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
-#apt install --no-install-recommends r-base
 
-sudo sed -i "s/# deb-src/deb-src/g" /etc/apt/sources.list
-sudo apt-get update
-sudo apt-get build-dep r-base-dev
+echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/debian-unstable.list \
+	&& echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default
 
-cd ~/Downloads
-wget -c https://cran.r-project.org/src/base/R-4/R-4.1.0.tar.gz
-tar -xf R-4.1.0.tar.gz
-cd R-4.1.0
-./configure
-make -j9
-make install
-
-
+apt-get update
+apt-get install -t unstable -y --no-install-recommends \
+		r-base=${R_BASE_VERSION}-* \
+		r-base-dev=${R_BASE_VERSION}-*
 
 #add-apt-repository \
 #        --yes \
